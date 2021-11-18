@@ -12,7 +12,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 # Register Listeners
 register_listeners(app)
-    
+
 # Start Bolt app
 if __name__ == "__main__":
     SocketModeHandler(app, os.environ.get("SLACK_APP_TOKEN")).start()

@@ -5,6 +5,7 @@ from listeners import messages
 from listeners import shortcuts
 from listeners import views
 
+
 def register_listeners(app):
     actions.register(app)
     commands.register(app)
