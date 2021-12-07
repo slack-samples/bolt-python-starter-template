@@ -1,3 +1,2 @@
 slack-bolt
-slack_sdk
 pytest
