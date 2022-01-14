@@ -12,7 +12,7 @@ from listeners import register_listeners
 logging.basicConfig(level=logging.DEBUG)
 
 
-# Installation Success
+# Callback to run on successful installation
 def success(args: SuccessArgs) -> BoltResponse:
     # Call default handler to return an HTTP response
     return args.default.success(args)
