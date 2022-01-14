@@ -21,7 +21,8 @@ def success(args: SuccessArgs) -> BoltResponse:
 
 # Installation Failure
 def failure(args: FailureArgs) -> BoltResponse:
-    return BoltResponse(status=args.suggested_status_code, body=args.reason)
+    return args.default.failure(args)
+    # return BoltResponse(status=args.suggested_status_code, body=args.reason)
 
 
 # Initialization
