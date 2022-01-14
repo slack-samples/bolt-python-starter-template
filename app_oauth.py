@@ -19,7 +19,7 @@ def success(args: SuccessArgs) -> BoltResponse:
     # return BoltResponse(status=200, body="Installation successful!")
 
 
-# Installation Failure
+# Callback to run on failed installation
 def failure(args: FailureArgs) -> BoltResponse:
     return args.default.failure(args)
     # return BoltResponse(status=args.suggested_status_code, body=args.reason)
