@@ -1,1 +1,1 @@
-# Copyright 2021, Slack Technologies, LLC. All rights reserved.
+# Copyright 2022, Slack Technologies, LLC. All rights reserved.

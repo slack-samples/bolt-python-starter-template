@@ -1,2 +1,4 @@
 slack-bolt
 pytest
+flake8
+black
