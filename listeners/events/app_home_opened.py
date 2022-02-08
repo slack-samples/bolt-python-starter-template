@@ -22,7 +22,8 @@ def app_home_opened_callback(client, event, logger: Logger):
                         "type": "section",
                         "text": {
                             "type": "mrkdwn",
-                            "text": "Learn how home tabs can be more useful and interactive <https://api.slack.com/surfaces/tabs/using|*in the documentation*>.",
+                            "text": "Learn how home tabs can be more useful and "
+                            + "interactive <https://api.slack.com/surfaces/tabs/using|*in the documentation*>.",
                         },
                     },
                 ],

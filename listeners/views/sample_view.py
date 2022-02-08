@@ -19,7 +19,8 @@ def sample_view_callback(view, ack: Ack, body: dict, client: WebClient, logger: 
 
         client.chat_postMessage(
             channel=sample_convo_value,
-            text=f"<@{sample_user_value}> submitted the following :sparkles: hopes and dreams :sparkles:: \n\n {sample_input_value}",
+            text=f"<@{sample_user_value}> submitted the following :sparkles: "
+            + f"hopes and dreams :sparkles:: \n\n {sample_input_value}",
         )
     except Exception as e:
         logger.error(e)

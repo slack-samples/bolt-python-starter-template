@@ -1,2 +1,4 @@
 slack-bolt
 pytest
+flake8==4.0.1
+black==22.1.0
