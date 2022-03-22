@@ -3,9 +3,7 @@ updates:
   - package-ecosystem: "pip"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "monthly"
     labels:
       - "pip"
       - "dependencies"
-    allow:
-      - dependency-name: "slack-bolt"
