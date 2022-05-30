@@ -26,4 +26,4 @@ jobs:
         pip install flake8==4.0.1
     - name: Lint with flake8
       run: |
-        flake8 .
+        flake8 *.py && flake8 listeners/
