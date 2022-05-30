@@ -23,7 +23,7 @@ jobs:
       run: |
         pip install -U pip
         # We manually upgrade it to make the builds stable
-        pip install black==22.1.0
+        pip install black==22.3.0
     - name: Format with black
       run: |
         black .
