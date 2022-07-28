@@ -36,3 +36,5 @@ tmp.txt
 logs/
 *.db
 .pytype/
+scripts
+.slack

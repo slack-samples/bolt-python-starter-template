@@ -1,7 +1,7 @@
 {
   "_metadata": {
-      "major_version": 1,
-      "minor_version": 1
+      "major_version": 2,
+      "minor_version": 2
   },
   "display_information": {
       "name": "Bolt Template App"
@@ -54,5 +54,34 @@
       "org_deploy_enabled": false,
       "socket_mode_enabled": true,
       "token_rotation_enabled": false
-  }
+  },
+  "functions": {
+    "reverse": {
+      "title": "Reverse",
+      "description": "Takes a string and reverses it",
+      "input_parameters": {
+        "properties": {
+          "stringToReverse": {
+            "type": "string",
+            "description": "The string to reverse"
+          }
+        },
+        "required": [
+          "stringToReverse"
+        ]
+      },
+      "output_parameters": {
+        "properties": {
+          "reverseString": {
+            "type": "string",
+            "description": "The string in reverse"
+          }
+        },
+        "required": [
+          "reverseString"
+        ]
+      }
+    }
+  },
+  "outgoing_domains": []
 }
