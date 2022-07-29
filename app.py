@@ -14,6 +14,12 @@ logging.basicConfig(level=logging.DEBUG)
 # Register Listeners
 register_listeners(app)
 
+
+@app.middleware  # or app.use(log_request)
+def log_request(logger, body, next):
+    logger.debug(body)
+    return next()
+
 # Start Bolt app
 if __name__ == "__main__":
     SocketModeHandler(app, os.environ.get("SLACK_APP_TOKEN")).start()

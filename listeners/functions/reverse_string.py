@@ -1,16 +1,15 @@
-from slack_bolt import Success
-from slack_bolt import Error
+from slack_bolt import CompleteSuccess
+from slack_bolt import CompleteError
 from logging import Logger
 
 
-def reverse_string(event, success: Success, err: Error, logger: Logger):
+def reverse_string(event, complete_success: CompleteSuccess, complete_error: CompleteError, logger: Logger):
     try:
-        logger.info(str(event))
         string_to_reverse = event["inputs"]["stringToReverse"]
-        success({
+        complete_success({
             "reverseString": string_to_reverse[::-1]
         })
     except Exception as e:
         logger.error(e)
-        err("Cannot reverse string")
+        complete_error("Cannot reverse string")
         raise e
