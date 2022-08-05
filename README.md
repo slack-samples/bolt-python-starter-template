@@ -45,16 +45,10 @@ python3 app.py
 
 #### Linting
 ```zsh
-# Install flake8 for linting
-pip install flake8
-
-# Run flake8 from root directory
+# Run flake8 from root directory for linting
 flake8 *.py && flake8 listeners/
 
-# Install black for code formatting
-pip install black
-
-# Run black from root directory
+# Run black from root directory for code formatting
 black .
 ```
 
