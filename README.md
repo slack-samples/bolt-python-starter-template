@@ -30,7 +30,7 @@ export SLACK_APP_TOKEN=<your-app-token>
 git clone https://github.com/slackapi/bolt-python-template.git
 
 # Change into this project directory
-cd bolt-python-template
+cd bolt-python-starter-template
 
 # Setup your python virtual environment
 python3 -m venv .venv
