@@ -1,5 +1,5 @@
 # slack-bolt
-/Users/wbergamin/Documents/slack/tools/forks/bolt-python/dist/slack_bolt-1.14.3-py2.py3-none-any.whl
+../../forks/bolt-python/dist/slack_bolt-1.14.3-py2.py3-none-any.whl
 pytest
 flake8==5.0.4
 black==22.8.0
