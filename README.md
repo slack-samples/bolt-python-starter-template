@@ -30,7 +30,7 @@ export SLACK_APP_TOKEN=<your-app-token>
 git clone https://github.com/slackapi/bolt-python-template.git
 
 # Change into this project directory
-cd bolt-python-template
+cd bolt-python-starter-template
 
 # Setup your python virtual environment
 python3 -m venv .venv
@@ -43,6 +43,14 @@ pip install -r requirements.txt
 python3 app.py
 ```
 
+#### Linting
+```zsh
+# Run flake8 from root directory for linting
+flake8 *.py && flake8 listeners/
+
+# Run black from root directory for code formatting
+black .
+```
 
 ## Project Structure
 
@@ -50,9 +58,9 @@ python3 app.py
 
 `manifest.json` is a configuration for Slack apps. With a manifest, you can create an app with a pre-defined configuration, or adjust the configuration of an existing app.
 
-### `app.js`
+### `app.py`
 
-`app.js` is the entry point for the application and is the file you'll run to start the server. This project aims to keep this file as thin as possible, primarily using it as a way to route inbound requests.
+`app.py` is the entry point for the application and is the file you'll run to start the server. This project aims to keep this file as thin as possible, primarily using it as a way to route inbound requests.
 
 ### `/listeners`
 
@@ -61,7 +69,7 @@ Every incoming request is routed to a "listener". Inside this directory, we grou
 
 ## App Distribution / OAuth
 
-Only implement OAuth if you plan to distribute your application across multiple workspaces. A separate `app-oauth.js` file can be found with relevant OAuth settings.
+Only implement OAuth if you plan to distribute your application across multiple workspaces. A separate `app-oauth.py` file can be found with relevant OAuth settings.
 
 When using OAuth, Slack requires a public URL where it can send requests. In this template app, we've used [`ngrok`](https://ngrok.com/download). Checkout [this guide](https://ngrok.com/docs#getting-started-expose) for setting it up.
 
