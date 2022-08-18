@@ -66,6 +66,28 @@ black .
 
 Every incoming request is routed to a "listener". Inside this directory, we group each listener based on the Slack Platform feature used, so `/listeners/shortcuts` handles incoming [Shortcuts](https://api.slack.com/interactivity/shortcuts) requests, `/listeners/views` handles [View submissions](https://api.slack.com/reference/interaction-payloads/views#view_submission) and so on.
 
+### triggers
+In order to run this project using the slack cli you must first set up triggers in your workspace.
+
+These triggers are defined in `trigger.json`, run the following command to add them to your workspace
+```bash
+slack trigger create --trigger-def "./trigger.json"
+```
+
+### manifest
+The `manifest.json` defines the behavior of your application, here are a vew helpful commands
+```bash
+slack manifest # view the compiled manifest
+slack manifest validate # to validate your manifest
+```
+
+### run application
+To start your application with the cli
+```bash
+slack run
+```
+
+**NOTE:** you my create your triggers in your workspace before 
 
 ## App Distribution / OAuth
 
