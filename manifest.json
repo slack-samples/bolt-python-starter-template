@@ -9,7 +9,7 @@
   "features": {
     "app_home": {
       "home_tab_enabled": true,
-      "messages_tab_enabled": false,
+      "messages_tab_enabled": true,
       "messages_tab_read_only_enabled": true
     },
     "bot_user": {
@@ -37,7 +37,8 @@
       "bot": [
         "channels:history",
         "chat:write",
-        "commands"
+        "commands",
+        "chat:write.public"
       ]
     }
   },
@@ -80,6 +81,40 @@
         "required": [
           "reverseString"
         ]
+      }
+    },
+    "review_approval": {
+      "title": "Approval Function",
+      "description": "Get approval for a request",
+      "input_parameters": {
+        "properties": {
+          "employee": {
+            "type": "slack#/types/user_id",
+            "description": "Requester"
+          },
+          "manager": {
+            "type": "slack#/types/user_id",
+            "description": "Manager"
+          },
+          "start_date": {
+            "type": "slack#/types/timestamp",
+            "description": "Start Date"
+          },
+          "end_date": {
+            "type": "slack#/types/timestamp",
+            "description": "End Date"
+          }
+        },
+        "required": [
+          "employee",
+          "manager",
+          "start_date",
+          "end_date"
+        ]
+      },
+      "output_parameters": {
+        "properties": {},
+        "required": []
       }
     }
   },
@@ -144,6 +179,64 @@
           "inputs": {
             "channel_id": "{{steps.0.fields.channel}}",
             "message": "{{steps.1.reverseString}}"
+          }
+        }
+      ]
+    },
+    "time_off_request_wf": {
+      "title": "Time Off Request Workflow",
+      "description": "",
+      "input_parameters": {
+        "properties": {
+          "interactivity": {
+            "type": "slack#/types/interactivity"
+          }
+        },
+        "required": []
+      },
+      "steps": [
+        {
+          "id": "0",
+          "function_id": "slack#/functions/open_form",
+          "inputs": {
+            "title": "Request Time Off",
+            "submit_label": "Request",
+            "description": "Please describe your request",
+            "interactivity": "{{inputs.interactivity}}",
+            "fields": {
+              "required": [
+                "manager",
+                "start_date",
+                "end_date"
+              ],
+              "elements": [
+                {
+                  "name": "manager",
+                  "title": "Manager",
+                  "type": "slack#/types/user_id"
+                },
+                {
+                  "name": "start_date",
+                  "title": "Start Date",
+                  "type": "slack#/types/timestamp"
+                },
+                {
+                  "name": "end_date",
+                  "title": "End Date",
+                  "type": "slack#/types/timestamp"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "1",
+          "function_id": "#/functions/review_approval",
+          "inputs": {
+            "employee": "{{inputs.interactivity.interactor.id}}",
+            "manager": "{{steps.0.fields.manager}}",
+            "start_date": "{{steps.0.fields.start_date}}",
+            "end_date": "{{steps.0.fields.end_date}}"
           }
         }
       ]
