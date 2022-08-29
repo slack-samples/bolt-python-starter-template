@@ -13,7 +13,6 @@ def approve_action(ack: Ack, client: WebClient, body, complete_error: CompleteEr
         employee = inputs["employee"]
         end_date = datetime.fromtimestamp(inputs["end_date"]).strftime("%m/%d/%Y %H:%M")
         start_date = datetime.fromtimestamp(inputs["start_date"]).strftime("%m/%d/%Y %H:%M")
-        container = body["container"]
 
         context_block = get_context_block(start_date, end_date, manager)
 
@@ -28,8 +27,8 @@ def approve_action(ack: Ack, client: WebClient, body, complete_error: CompleteEr
             blocks=[context_block])
 
         client.chat_update(
-            channel=container["channel_id"],
-            ts=container["message_ts"],
+            channel=body["container"]["channel_id"],
+            ts=body["container"]["message_ts"],
             text=text,
             blocks=updated_blocks
         )
@@ -47,7 +46,7 @@ def get_context_block(start_date, end_date, manager):
         "elements": [
             {
                 "type": 'mrkdwn',
-                "text": f":white_check_mark: Time-off request for _{start_date}_ :right_arrow: _{end_date}_ approved by <@{manager}>",
+                "text": f":white_check_mark: Time-off request for _{start_date}_ :arrow_right: _{end_date}_ approved by <@{manager}>",
             },
         ],
     }
