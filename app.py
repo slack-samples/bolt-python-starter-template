@@ -1,5 +1,6 @@
 import os
 import logging
+from copy import deepcopy
 
 from slack_bolt import App
 from slack_bolt.adapter.socket_mode import SocketModeHandler
@@ -16,7 +17,8 @@ register_listeners(app)
 
 
 @app.middleware  # or app.use(log_request)
-def log_request(logger, body, next):
+def log_request(client, logger, body, next):
+    logger.info(f"this is my token: {client.token}")
     logger.debug(body)
     return next()
 

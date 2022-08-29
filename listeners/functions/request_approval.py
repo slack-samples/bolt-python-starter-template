@@ -7,6 +7,7 @@ from datetime import datetime
 
 def request_approval(event, client: WebClient, complete_error: CompleteError, logger: Logger):
     try:
+        logger.info(f"my real token: {client.token}")
         inputs = event["inputs"]
         manager = inputs["manager"]
         employee = inputs["employee"]
@@ -28,14 +29,14 @@ def request_approval(event, client: WebClient, complete_error: CompleteError, lo
                     "type": 'section',
                     "text": {
                         "type": 'mrkdwn',
-                        "text": f"*From: * < @${employee} >",
+                        "text": f"*From: * <@{employee}>",
                     },
                 },
                 {
                     "type": 'section',
                     "text": {
                         "type": 'mrkdwn',
-                        "text": f"*Dates: * ${start_date} to ${end_date}",
+                        "text": f"*Dates: * _{start_date}_ :arrow_right: _{end_date}_",
                     },
                 },
                 {
