@@ -1,12 +1,11 @@
 from datetime import datetime
-from difflib import context_diff
 from logging import Logger
 
-from slack_bolt import Ack, CompleteError
+from slack_bolt import Ack, Complete
 from slack_sdk import WebClient
 
 
-def deny_action(ack: Ack, client: WebClient, body, complete_error: CompleteError, logger: Logger):
+def deny_action(ack: Ack, client: WebClient, body, complete: Complete, logger: Logger):
     try:
         ack()
         inputs = body["function_data"]["inputs"]
@@ -34,10 +33,10 @@ def deny_action(ack: Ack, client: WebClient, body, complete_error: CompleteError
             text=text,
             blocks=updated_blocks
         )
-        complete_error("there is no error")
+        complete()
     except Exception as e:
         logger.error(e)
-        complete_error("Cannot request approval")
+        complete(error="Cannot request approval")
         raise e
 
 

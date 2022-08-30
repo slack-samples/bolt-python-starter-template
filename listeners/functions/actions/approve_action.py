@@ -1,11 +1,11 @@
 from datetime import datetime
 from logging import Logger
 
-from slack_bolt import Ack, CompleteError
+from slack_bolt import Ack, Complete
 from slack_sdk import WebClient
 
 
-def approve_action(ack: Ack, client: WebClient, body, complete_error: CompleteError, logger: Logger):
+def approve_action(ack: Ack, client: WebClient, body, complete: Complete, logger: Logger):
     try:
         ack()
         inputs = body["function_data"]["inputs"]
@@ -33,10 +33,10 @@ def approve_action(ack: Ack, client: WebClient, body, complete_error: CompleteEr
             blocks=updated_blocks
         )
 
-        complete_error("there is no error")
+        complete()
     except Exception as e:
         logger.error(e)
-        complete_error("Cannot request approval")
+        complete("Cannot request approval")
         raise e
 
 

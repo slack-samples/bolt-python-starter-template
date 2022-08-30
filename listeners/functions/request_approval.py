@@ -1,11 +1,11 @@
 from slack_sdk import WebClient
-from slack_bolt import CompleteError
+from slack_bolt import Complete
 from logging import Logger
 
 from datetime import datetime
 
 
-def request_approval(event, client: WebClient, complete_error: CompleteError, logger: Logger):
+def request_approval(event, client: WebClient, complete: Complete, logger: Logger):
     try:
         logger.info(f"my real token: {client.token}")
         inputs = event["inputs"]
@@ -64,8 +64,7 @@ def request_approval(event, client: WebClient, complete_error: CompleteError, lo
                     ]
                 }
             ])
-
     except Exception as e:
         logger.error(e)
-        complete_error("Cannot request approval")
+        complete(error="Cannot request approval")
         raise e
