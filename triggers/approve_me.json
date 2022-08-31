@@ -1,8 +1,8 @@
 {
     "type": "shortcut",
-    "name": "Take Your Time",
+    "name": "Approve Me",
     "description": "Submit a request to take time off",
-    "workflow": "#/workflows/time_off_request_wf",
+    "workflow": "#/workflows/approve_me_wf",
     "shortcut": {},
     "inputs": {
         "interactivity": {

@@ -83,33 +83,18 @@
         ]
       }
     },
-    "review_approval": {
+    "approve_me": {
       "title": "Approval Function",
-      "description": "Get approval for a request",
+      "description": "Get approval for a message",
       "input_parameters": {
         "properties": {
-          "employee": {
-            "type": "slack#/types/user_id",
-            "description": "Requester"
-          },
-          "manager": {
-            "type": "slack#/types/user_id",
-            "description": "Manager"
-          },
-          "start_date": {
-            "type": "slack#/types/timestamp",
-            "description": "Start Date"
-          },
-          "end_date": {
-            "type": "slack#/types/timestamp",
-            "description": "End Date"
+          "channel": {
+            "type": "slack#/types/channel_id",
+            "description": "channel ID"
           }
         },
         "required": [
-          "employee",
-          "manager",
-          "start_date",
-          "end_date"
+          "channel"
         ]
       },
       "output_parameters": {
@@ -183,47 +168,41 @@
         }
       ]
     },
-    "time_off_request_wf": {
-      "title": "Time Off Request Workflow",
-      "description": "",
+    "approve_me_wf": {
+      "title": "Approve Me Workflow",
+      "description": "Message that allows users to approve it",
       "input_parameters": {
         "properties": {
           "interactivity": {
             "type": "slack#/types/interactivity"
+          },
+          "channel": {
+            "type": "slack#/types/channel_id"
           }
         },
-        "required": []
+        "required": [
+          "interactivity"
+        ]
       },
       "steps": [
         {
           "id": "0",
           "function_id": "slack#/functions/open_form",
           "inputs": {
-            "title": "Request Time Off",
-            "submit_label": "Request",
-            "description": "Please describe your request",
+            "title": "Approve me form",
+            "submit_label": "Send",
+            "description": "Please select a channel to send the message",
             "interactivity": "{{inputs.interactivity}}",
             "fields": {
               "required": [
-                "manager",
-                "start_date",
-                "end_date"
+                "channel"
               ],
               "elements": [
                 {
-                  "name": "manager",
-                  "title": "Manager",
-                  "type": "slack#/types/user_id"
-                },
-                {
-                  "name": "start_date",
-                  "title": "Start Date",
-                  "type": "slack#/types/timestamp"
-                },
-                {
-                  "name": "end_date",
-                  "title": "End Date",
-                  "type": "slack#/types/timestamp"
+                  "name": "channel",
+                  "title": "Post in",
+                  "type": "slack#/types/channel_id",
+                  "default": "{{inputs.channel}}"
                 }
               ]
             }
@@ -231,12 +210,9 @@
         },
         {
           "id": "1",
-          "function_id": "#/functions/review_approval",
+          "function_id": "#/functions/approve_me",
           "inputs": {
-            "employee": "{{inputs.interactivity.interactor.id}}",
-            "manager": "{{steps.0.fields.manager}}",
-            "start_date": "{{steps.0.fields.start_date}}",
-            "end_date": "{{steps.0.fields.end_date}}"
+            "channel": "{{steps.0.fields.channel}}"
           }
         }
       ]
