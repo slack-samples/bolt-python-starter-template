@@ -9,7 +9,7 @@ from slack_bolt.function import Function
 def register(app: App):
 
     @app.function("reverse")
-    def reverse_string(event, context, complete: Complete, logger: Logger):
+    def reverse_string(event, complete: Complete, logger: Logger):
         try:
             string_to_reverse = event["inputs"]["stringToReverse"]
             complete(
