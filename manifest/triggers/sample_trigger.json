@@ -1,8 +1,8 @@
 {
     "type": "shortcut",
-    "name": "Reverse a String",
-    "description": "Starts the workflow to test reversing a string",
-    "workflow": "#/workflows/test_reverse",
+    "name": "Sample trigger",
+    "description": "A sample trigger",
+    "workflow": "#/workflows/sample_workflow",
     "inputs": {
         "interactivity": {
             "value": "{{data.interactivity}}"

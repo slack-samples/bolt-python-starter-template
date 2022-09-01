@@ -22,6 +22,7 @@ def log_request(client, logger, body, next):
     logger.debug(body)
     return next()
 
+
 # Start Bolt app
 if __name__ == "__main__":
     SocketModeHandler(app, os.environ.get("SLACK_APP_TOKEN")).start()

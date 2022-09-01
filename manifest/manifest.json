@@ -57,57 +57,38 @@
     "token_rotation_enabled": false
   },
   "functions": {
-    "reverse": {
-      "title": "Reverse",
-      "description": "Takes a string and reverses it",
+    "sample_function": {
+      "title": "Sample function",
+      "description": "A sample function",
       "input_parameters": {
         "properties": {
-          "stringToReverse": {
+          "message": {
             "type": "string",
-            "description": "The string to reverse"
+            "description": "Message to be posted"
           }
         },
         "required": [
-          "stringToReverse"
+          "message"
         ]
       },
       "output_parameters": {
         "properties": {
-          "reverseString": {
+          "updatedMsg": {
             "type": "string",
-            "description": "The string in reverse"
+            "description": "Updated message to be posted"
           }
         },
         "required": [
-          "reverseString"
+          "updatedMsg"
         ]
-      }
-    },
-    "approve_me": {
-      "title": "Approve a message",
-      "description": "Get approval for a message",
-      "input_parameters": {
-        "properties": {
-          "channel": {
-            "type": "slack#/types/channel_id",
-            "description": "channel id"
-          }
-        },
-        "required": [
-          "channel"
-        ]
-      },
-      "output_parameters": {
-        "properties": {},
-        "required": []
       }
     }
   },
   "types": {},
   "workflows": {
-    "test_reverse": {
-      "title": "Test Reverse Function",
-      "description": "test the reverse function",
+    "sample_workflow": {
+      "title": "Sample workflow",
+      "description": "A sample workflow",
       "input_parameters": {
         "properties": {
           "interactivity": {
@@ -126,36 +107,37 @@
           "id": "0",
           "function_id": "slack#/functions/open_form",
           "inputs": {
-            "title": "Reverse string form",
-            "submit_label": "Submit form",
-            "description": "Submit a string to reverse",
+            "title": "Send message to channel",
+            "submit_label": "Send message",
+            "description": "Send a message to a channel",
             "interactivity": "{{inputs.interactivity}}",
             "fields": {
-              "required": [
-                "channel",
-                "stringInput"
-              ],
               "elements": [
                 {
-                  "name": "stringInput",
-                  "title": "String input",
-                  "type": "string"
+                  "name": "message",
+                  "title": "Message",
+                  "type": "string",
+                  "long": true
                 },
                 {
                   "name": "channel",
-                  "title": "Post in",
+                  "title": "Channel to send message to",
                   "type": "slack#/types/channel_id",
                   "default": "{{inputs.channel}}"
                 }
+              ],
+              "required": [
+                "channel",
+                "message"
               ]
             }
           }
         },
         {
           "id": "1",
-          "function_id": "#/functions/reverse",
+          "function_id": "#/functions/sample_function",
           "inputs": {
-            "stringToReverse": "{{steps.0.fields.stringInput}}"
+            "message": "{{steps.0.fields.message}}"
           }
         },
         {
@@ -163,30 +145,7 @@
           "function_id": "slack#/functions/send_message",
           "inputs": {
             "channel_id": "{{steps.0.fields.channel}}",
-            "message": "{{steps.1.reverseString}}"
-          }
-        }
-      ]
-    },
-    "approve_me_wf": {
-      "title": "Approve Me Workflow",
-      "description": "Message that allows users to approve it",
-      "input_parameters": {
-        "properties": {
-          "channel": {
-            "type": "slack#/types/channel_id"
-          }
-        },
-        "required": [
-          "channel"
-        ]
-      },
-      "steps": [
-        {
-          "id": "0",
-          "function_id": "#/functions/approve_me",
-          "inputs": {
-            "channel": "{{inputs.channel}}"
+            "message": "{{steps.1.updatedMsg}}"
           }
         }
       ]

@@ -69,13 +69,13 @@ Every incoming request is routed to a "listener". Inside this directory, we grou
 ### triggers
 In order to run this project using the slack cli you must first set up triggers in your workspace.
 
-These triggers are defined in `trigger.json`, run the following command to add them to your workspace
+These triggers are defined in `manifest/triggers` folder, run the following command to add the defined one to your workspace
 ```bash
-slack trigger create --trigger-def "./trigger.json"
+slack trigger create --trigger-def "./manifest/triggers/sample_trigger.json"
 ```
 
 ### manifest
-The `manifest.json` defines the behavior of your application, here are a vew helpful commands
+The `manifest/manifest.json` defines the behavior of your application, here are a vew helpful commands
 ```bash
 slack manifest # view the compiled manifest
 slack manifest validate # to validate your manifest
