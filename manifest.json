@@ -84,13 +84,13 @@
       }
     },
     "approve_me": {
-      "title": "Approval Function",
+      "title": "Approve a message",
       "description": "Get approval for a message",
       "input_parameters": {
         "properties": {
           "channel": {
             "type": "slack#/types/channel_id",
-            "description": "channel ID"
+            "description": "channel id"
           }
         },
         "required": [
@@ -173,46 +173,20 @@
       "description": "Message that allows users to approve it",
       "input_parameters": {
         "properties": {
-          "interactivity": {
-            "type": "slack#/types/interactivity"
-          },
           "channel": {
             "type": "slack#/types/channel_id"
           }
         },
         "required": [
-          "interactivity"
+          "channel"
         ]
       },
       "steps": [
         {
           "id": "0",
-          "function_id": "slack#/functions/open_form",
-          "inputs": {
-            "title": "Approve me form",
-            "submit_label": "Send",
-            "description": "Please select a channel to send the message",
-            "interactivity": "{{inputs.interactivity}}",
-            "fields": {
-              "required": [
-                "channel"
-              ],
-              "elements": [
-                {
-                  "name": "channel",
-                  "title": "Post in",
-                  "type": "slack#/types/channel_id",
-                  "default": "{{inputs.channel}}"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "id": "1",
           "function_id": "#/functions/approve_me",
           "inputs": {
-            "channel": "{{steps.0.fields.channel}}"
+            "channel": "{{inputs.channel}}"
           }
         }
       ]

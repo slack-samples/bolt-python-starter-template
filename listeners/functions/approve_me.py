@@ -9,10 +9,8 @@ DENY_ID = "deny_action_id"
 
 def approve_me(event, client: WebClient, complete: Complete, logger: Logger):
     try:
-        channel = event["inputs"]["channel"]
-
         client.chat_postMessage(
-            channel=channel,
+            channel=event["inputs"]["channel"],
             text='Approve me please',
             blocks=[
                 {
@@ -57,27 +55,17 @@ def approve_action(ack: Ack, client: WebClient, body, complete: Complete, logger
     try:
         ack()
         blocks = body["message"]["blocks"][:-1]
-        blocks.append({
-            "type": 'context',
-            "elements": [
-                {
-                    "type": 'mrkdwn',
-                    "text": f":white_check_mark: I have been approved",
-                },
-            ],
-        })
-
+        blocks.append(_get_context_block(":white_check_mark: I have been approved"))
         client.chat_update(
             channel=body["container"]["channel_id"],
             ts=body["container"]["message_ts"],
             text="I have been approved",
             blocks=blocks
         )
-
         complete()
     except Exception as e:
         logger.error(e)
-        complete("Cannot request approval")
+        complete(error="Cannot request approval")
         raise e
 
 
@@ -85,25 +73,27 @@ def deny_action(ack: Ack, client: WebClient, body, complete: Complete, logger: L
     try:
         ack()
         blocks = body["message"]["blocks"][:-1]
-        blocks.append({
-            "type": 'context',
-            "elements": [
-                {
-                    "type": 'mrkdwn',
-                    "text": f":no_entry: I have been denied",
-                },
-            ],
-        })
-
+        blocks.append(_get_context_block(":no_entry: I have been denied"))
         client.chat_update(
             channel=body["container"]["channel_id"],
             ts=body["container"]["message_ts"],
             text="I have been denied",
             blocks=blocks
         )
-
         complete()
     except Exception as e:
         logger.error(e)
-        complete("Cannot request approval")
+        complete(error="Cannot request approval")
         raise e
+
+
+def _get_context_block(mrkdwn):
+    return {
+        "type": 'context',
+        "elements": [
+                {
+                    "type": 'mrkdwn',
+                    "text": mrkdwn,
+                },
+        ],
+    }

@@ -5,8 +5,8 @@
     "workflow": "#/workflows/approve_me_wf",
     "shortcut": {},
     "inputs": {
-        "interactivity": {
-            "value": "{{data.interactivity}}"
+        "channel": {
+            "value": "{{data.channel_id}}"
         }
     }
 }

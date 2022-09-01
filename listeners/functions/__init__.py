@@ -3,7 +3,7 @@ from slack_bolt import Complete
 from slack_bolt import App
 from .approve_me import approve_me, approve_action, deny_action, APPROVE_ID, DENY_ID
 
-from slack_bolt.function import Function
+from slack_bolt.slack_function import SlackFunction
 
 
 def register(app: App):
@@ -22,6 +22,6 @@ def register(app: App):
             complete(error="Cannot reverse string")
             raise e
 
-    approve_me_function: Function = app.function("approve_me")(approve_me)
+    approve_me_function: SlackFunction = app.function("approve_me")(approve_me)
     approve_me_function.action(APPROVE_ID)(approve_action)
     approve_me_function.action(DENY_ID)(deny_action)
