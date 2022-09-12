@@ -1,0 +1,14 @@
+{
+    "type": "shortcut",
+    "name": "Sample view trigger",
+    "description": "A sample view trigger",
+    "workflow": "#/workflows/sample_view_workflow",
+    "inputs": {
+        "interactivity": {
+            "value": "{{data.interactivity}}"
+        },
+        "channel": {
+            "value": "{{data.channel_id}}"
+        }
+    }
+}

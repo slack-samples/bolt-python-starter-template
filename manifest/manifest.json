@@ -52,7 +52,7 @@
     "interactivity": {
       "is_enabled": true
     },
-    "org_deploy_enabled": false,
+    "org_deploy_enabled": true,
     "socket_mode_enabled": true,
     "token_rotation_enabled": false
   },
@@ -80,6 +80,28 @@
         },
         "required": [
           "updatedMsg"
+        ]
+      }
+    },
+    "sample_view_function": {
+      "title": "Sample view function",
+      "description": "A sample function thats uses views",
+      "input_parameters": {
+        "properties": {
+          "interactivity": {
+            "type": "slack#/types/interactivity"
+          }
+        }
+      },
+      "output_parameters": {
+        "properties": {
+          "markdown": {
+            "type": "string",
+            "description": "message to be send to slack"
+          }
+        },
+        "required": [
+          "markdown"
         ]
       }
     }
@@ -128,7 +150,8 @@
               ],
               "required": [
                 "channel",
-                "message"
+                "message",
+                "interactivity"
               ]
             }
           }
@@ -146,6 +169,41 @@
           "inputs": {
             "channel_id": "{{steps.0.fields.channel}}",
             "message": "{{steps.1.updatedMsg}}"
+          }
+        }
+      ]
+    },
+    "sample_view_workflow": {
+      "title": "Sample view workflow",
+      "description": "A sample view workflow",
+      "input_parameters": {
+        "properties": {
+          "interactivity": {
+            "type": "slack#/types/interactivity"
+          },
+          "channel": {
+            "type": "slack#/types/channel_id"
+          }
+        },
+        "required": [
+          "interactivity",
+          "channel"
+        ]
+      },
+      "steps": [
+        {
+          "id": "0",
+          "function_id": "#/functions/sample_view_function",
+          "inputs": {
+            "interactivity": "{{inputs.interactivity}}"
+          }
+        },
+        {
+          "id": "1",
+          "function_id": "slack#/functions/send_message",
+          "inputs": {
+            "channel_id": "{{inputs.channel}}",
+            "message": "{{steps.0.markdown}}"
           }
         }
       ]
