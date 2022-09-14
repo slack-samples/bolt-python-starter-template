@@ -150,8 +150,7 @@
               ],
               "required": [
                 "channel",
-                "message",
-                "interactivity"
+                "message"
               ]
             }
           }
