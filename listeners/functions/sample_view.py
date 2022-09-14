@@ -7,7 +7,7 @@ from slack_bolt import Complete, Ack
 
 def sample_view(event, client: WebClient, complete: Complete, logger: logging.Logger):
     try:
-        interactivity_pointer = event["inputs"]["interactivity.interactivity_pointer"]
+        interactivity_pointer = event["inputs"]["interactivity"]["interactivity_pointer"]
         client.views_open(
             interactivity_pointer=interactivity_pointer,
             trigger_id=None,
