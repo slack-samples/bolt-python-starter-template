@@ -1,5 +1,4 @@
-# slack-bolt
-../../forks/bolt-python/dist/slack_bolt-1.14.3-py2.py3-none-any.whl
+slack-bolt==1.15.0.dev0
 pytest
 flake8==5.0.4
 black==22.8.0
