@@ -1,7 +1,6 @@
 from logging import Logger
 
 from slack_bolt import BoltContext, Say
-from slack_sdk import WebClient
 
 
 def sample_message_callback(context: BoltContext, say: Say, logger: Logger):

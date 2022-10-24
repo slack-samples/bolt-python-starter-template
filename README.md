@@ -3,16 +3,19 @@
 This is a generic Bolt for Python template app used to build out Slack apps.
 
 Before getting started, make sure you have a development workspace where you have permissions to install apps. If you don’t have one setup, go ahead and [create one](https://slack.com/create).
+
 ## Installation
 
-#### Create a Slack App
+### Create a Slack App
+
 1. Open [https://api.slack.com/apps/new](https://api.slack.com/apps/new) and choose "From an app manifest"
 2. Choose the workspace you want to install the application to
 3. Copy the contents of [manifest.json](./manifest.json) into the text box that says `*Paste your manifest code here*` (within the JSON tab) and click *Next*
 4. Review the configuration and click *Create*
 5. Click *Install to Workspace* and *Allow* on the screen that follows. You'll then be redirected to the App Configuration dashboard.
 
-#### Environment Variables
+### Environment Variables
+
 Before you can run the app, you'll need to store some environment variables.
 
 1. Open your apps configuration page from this list, click **OAuth & Permissions** in the left hand menu, then copy the Bot User OAuth Token. You will store this in your environment as `SLACK_BOT_TOKEN`.
@@ -25,6 +28,7 @@ export SLACK_APP_TOKEN=<your-app-token>
 ```
 
 ### Setup Your Local Project
+
 ```zsh
 # Clone this project onto your machine
 git clone https://github.com/slackapi/bolt-python-template.git
@@ -44,6 +48,7 @@ python3 app.py
 ```
 
 #### Linting
+
 ```zsh
 # Run flake8 from root directory for linting
 flake8 *.py && flake8 listeners/
@@ -67,27 +72,33 @@ black .
 Every incoming request is routed to a "listener". Inside this directory, we group each listener based on the Slack Platform feature used, so `/listeners/shortcuts` handles incoming [Shortcuts](https://api.slack.com/interactivity/shortcuts) requests, `/listeners/views` handles [View submissions](https://api.slack.com/reference/interaction-payloads/views#view_submission) and so on.
 
 ### triggers
+
 In order to run this project using the slack cli you must first set up triggers in your workspace.
 
 These triggers are defined in `manifest/triggers` folder, run the following command to add the defined one to your workspace
+
 ```bash
 slack trigger create --trigger-def "./manifest/triggers/sample_trigger.json"
 ```
 
 ### manifest
+
 The `manifest/manifest.json` defines the behavior of your application, here are a vew helpful commands
+
 ```bash
 slack manifest # view the compiled manifest
 slack manifest validate # to validate your manifest
 ```
 
 ### run application
+
 To start your application with the cli
+
 ```bash
 slack run
 ```
 
-**NOTE:** you my create your triggers in your workspace before 
+**NOTE:** you my create your triggers in your workspace before
 
 ## App Distribution / OAuth
 
@@ -95,20 +106,20 @@ Only implement OAuth if you plan to distribute your application across multiple 
 
 When using OAuth, Slack requires a public URL where it can send requests. In this template app, we've used [`ngrok`](https://ngrok.com/download). Checkout [this guide](https://ngrok.com/docs#getting-started-expose) for setting it up.
 
-Start `ngrok` to access the app on an external network and create a redirect URL for OAuth. 
+Start `ngrok` to access the app on an external network and create a redirect URL for OAuth.
 
-```
+```bash
 ngrok http 3000
 ```
 
 This output should include a forwarding address for `http` and `https` (we'll use `https`). It should look something like the following:
 
-```
+```bash
 Forwarding   https://3cb89939.ngrok.io -> http://localhost:3000
 ```
 
 Navigate to **OAuth & Permissions** in your app configuration and click **Add a Redirect URL**. The redirect URL should be set to your `ngrok` forwarding address with the `slack/oauth_redirect` path appended. For example:
 
-```
+```bash
 https://3cb89939.ngrok.io/slack/oauth_redirect
 ```
