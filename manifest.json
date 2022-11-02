@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/slackapi/manifest-schema/main/manifest.schema.json",
   "_metadata": {
     "major_version": 2,
     "minor_version": 2
