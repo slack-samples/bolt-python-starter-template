@@ -22,8 +22,7 @@ jobs:
     - name: Install dependencies
       run: |
         pip install -U pip
-        # We manually upgrade it to make the builds stable
-        pip install flake8==4.0.1
+        pip install -r requirements.txt
     - name: Lint with flake8
       run: |
         flake8 *.py && flake8 listeners/

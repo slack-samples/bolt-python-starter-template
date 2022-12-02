@@ -22,8 +22,7 @@ jobs:
     - name: Install dependencies
       run: |
         pip install -U pip
-        # We manually upgrade it to make the builds stable
-        pip install black==22.3.0
+        pip install -r requirements.txt
     - name: Format with black
       run: |
         black .
