@@ -17,9 +17,9 @@ Before getting started, make sure you have a development workspace where you hav
   - [Create a Link Trigger](#create-a-link-trigger)
   - [Running Your Project Locally](#running-your-project-locally)
   - [Project Structure](#project-structure)
-    - [`manifest.json`](#manifest.json)
+    - [`manifest.json`](#manifestjson)
     - [`/triggers`](#triggers)
-    - [`slack.json`](#slack.json)
+    - [`slack.json`](#slackjson)
   - [Resources](#resources)
 
 ---
