@@ -1,125 +1,158 @@
-# Bolt for Python Template App
 
-This is a generic Bolt for Python template app used to build out Slack apps.
+# Bolt Python Starter Template
+
+This app contains a generic Bolt for Python template app used to build out Slack apps on Slack's
+[next-generation platform](https://api.slack.com/future).
 
 Before getting started, make sure you have a development workspace where you have permissions to install apps. If you don’t have one setup, go ahead and [create one](https://slack.com/create).
 
-## Installation
+**Guide Outline**:
 
-### Create a Slack App
+- [Bolt Python Starter Template ](#bolt-python-starter-template)
+  - [Supported Workflows](#supported-workflows)
+  - [Setup](#setup)
+    - [Install the Slack CLI](#install-the-slack-cli)
+    - [Clone the Sample App](#clone-the-sample-app)
+      - [Linting](#linting)
+  - [Create a Link Trigger](#create-a-link-trigger)
+  - [Running Your Project Locally](#running-your-project-locally)
+  - [Project Structure](#project-structure)
+    - [`manifest.json`](#manifestjson)
+    - [`/triggers`](#triggers)
+    - [`slack.json`](#slackjson)
+  - [Resources](#resources)
 
-1. Open [https://api.slack.com/apps/new](https://api.slack.com/apps/new) and choose "From an app manifest"
-2. Choose the workspace you want to install the application to
-3. Copy the contents of [manifest.json](./manifest.json) into the text box that says `*Paste your manifest code here*` (within the JSON tab) and click *Next*
-4. Review the configuration and click *Create*
-5. Click *Install to Workspace* and *Allow* on the screen that follows. You'll then be redirected to the App Configuration dashboard.
+---
 
-### Environment Variables
+## Supported Workflows
 
-Before you can run the app, you'll need to store some environment variables.
+- **Sample workflow**: Enter details to send a message to a channel
 
-1. Open your apps configuration page from this list, click **OAuth & Permissions** in the left hand menu, then copy the Bot User OAuth Token. You will store this in your environment as `SLACK_BOT_TOKEN`.
-2. Click ***Basic Information** from the left hand menu and follow the steps in the App-Level Tokens section to create an app-level token with the `connections:write` scope. Copy this token. You will store this in your environment as `SLACK_APP_TOKEN`.
+## Setup
 
-```zsh
-# Replace with your app token and bot token
-export SLACK_BOT_TOKEN=<your-bot-token>
-export SLACK_APP_TOKEN=<your-app-token>
-```
+Before getting started, make sure you have a development workspace where you
+have permissions to install apps. If you don’t have one set up, go ahead and
+[create one](https://slack.com/create). Also, please note that the workspace
+requires any of [the Slack paid plans](https://slack.com/pricing).
 
-### Setup Your Local Project
+### Install the Slack CLI
+
+To use this sample, you first need to install and configure the Slack CLI.
+Step-by-step instructions can be found in our
+[Quickstart Guide](https://api.slack.com/future/quickstart).
+
+### Clone the Sample App
+
+Start by cloning this repository:
 
 ```zsh
 # Clone this project onto your machine
-git clone https://github.com/slackapi/bolt-python-template.git
+$ slack create my-app -t slack-samples/bolt-python-starter-template -b future
 
 # Change into this project directory
-cd bolt-python-starter-template
+$ cd my-app
 
 # Setup your python virtual environment
-python3 -m venv .venv
-source .venv/bin/activate
+$ python3 -m venv .venv
+$ source .venv/bin/activate
 
-# Install the dependencies
-pip install -r requirements.txt
-
-# Start your local server
-python3 app.py
+# Install the project dependencies
+$ pip install -r requirements.txt
 ```
 
 #### Linting
 
 ```zsh
 # Run flake8 from root directory for linting
-flake8 *.py && flake8 listeners/
+flake8 *.py && flake8 functions/
 
 # Run black from root directory for code formatting
 black .
 ```
 
+## Create a Link Trigger
+
+[Triggers](https://api.slack.com/future/triggers) are what cause workflows to
+run. These triggers can be invoked by a user, or automatically as a response to
+an event within Slack.
+
+A [link trigger](https://api.slack.com/future/triggers/link) is a type of
+trigger that generates a **Shortcut URL** which, when posted in a channel or
+added as a bookmark, becomes a link. When clicked, the link trigger will run the
+associated workflow.
+
+Link triggers are _unique to each installed version of your app_. This means
+that Shortcut URLs will be different across each workspace, as well as between
+[locally run](#running-your-project-locally). When creating a trigger, you must select
+the Workspace that you'd like to create the trigger in. Each Workspace has a
+development version (denoted by `(dev)`), as well as a deployed version.
+
+To create a link trigger for the sample workflow, run the following
+command:
+
+```zsh
+slack trigger create --trigger-def triggers/sample_trigger.json
+```
+
+After selecting a Workspace, the output provided will include the link trigger
+Shortcut URL. Copy and paste this URL into a channel as a message, or add it as
+a bookmark in a channel of the Workspace you selected.
+
+**Note: this link won't run the workflow until the app is either running locally
+or deployed!** Read on to learn how to run your app locally and eventually
+deploy it to Slack hosting.
+
+## Running Your Project Locally
+
+While building your app, you can see your changes propagated to your workspace
+in real-time with `slack run`. In both the CLI and in Slack, you'll know an app
+is the development version if the name has the string `(dev)` appended.
+
+```zsh
+# Run app locally
+$ slack run
+
+⚡️ Bolt app is running! ⚡️
+```
+
+Once running, click the
+[previously created Shortcut URL](#create-a-link-trigger) associated with the
+`(dev)` version of your app. This should start a workflow that opens a form used
+to send a message to a certain channel!
+
+To stop running locally, press `<CTRL> + C` to end the process.
+
 ## Project Structure
 
 ### `manifest.json`
 
-`manifest.json` is a configuration for Slack apps. With a manifest, you can create an app with a pre-defined configuration, or adjust the configuration of an existing app.
+`manifest.json` is a configuration for Slack CLI apps in JSON. This file will
+establish all basic configurations for your application, including app name
+and description.
 
-### `app.py`
+Within the manifest are initializations for [workflows](https://api.slack.com/future/workflows) and [functions](https://api.slack.com/future/functions) are reusable building blocks
+of automation that accept inputs, perform calculations, and provide outputs.
+Functions can be used independently or as steps in workflows.
 
-`app.py` is the entry point for the application and is the file you'll run to start the server. This project aims to keep this file as thin as possible, primarily using it as a way to route inbound requests.
+### `/triggers`
 
-### `/listeners`
+All trigger configuration files live in here - for this example,
+`sample_trigger.json` is the trigger config for a trigger that starts the workflow
+ initialized in `/manifest/manifest.json`.
 
-Every incoming request is routed to a "listener". Inside this directory, we group each listener based on the Slack Platform feature used, so `/listeners/shortcuts` handles incoming [Shortcuts](https://api.slack.com/interactivity/shortcuts) requests, `/listeners/views` handles [View submissions](https://api.slack.com/reference/interaction-payloads/views#view_submission) and so on.
+### `slack.json`
 
-### triggers
+Used by the CLI to interact with the project's SDK dependencies. It contains
+script hooks that are executed by the CLI and implemented by the SDK.
 
-In order to run this project using the slack cli you must first set up triggers in your workspace.
 
-These triggers are defined in `manifest/triggers` folder, run the following command to add the defined one to your workspace
+## Resources
 
-```bash
-slack trigger create --trigger-def "./manifest/triggers/sample_trigger.json"
-```
+To learn more about developing with the CLI, you can visit the following guides:
 
-### manifest
+- [Creating a new app with the CLI](https://api.slack.com/future/create)
+- [Configuring your app](https://api.slack.com/future/manifest)
+- [Developing locally](https://api.slack.com/future/run)
 
-The `manifest/manifest.json` defines the behavior of your application, here are a vew helpful commands
-
-```bash
-slack manifest # view the compiled manifest
-slack manifest validate # to validate your manifest
-```
-
-### run application
-
-To start your application with the cli
-
-```bash
-slack run
-```
-
-**NOTE:** you my create your triggers in your workspace before
-
-## App Distribution / OAuth
-
-Only implement OAuth if you plan to distribute your application across multiple workspaces. A separate `app-oauth.py` file can be found with relevant OAuth settings.
-
-When using OAuth, Slack requires a public URL where it can send requests. In this template app, we've used [`ngrok`](https://ngrok.com/download). Checkout [this guide](https://ngrok.com/docs#getting-started-expose) for setting it up.
-
-Start `ngrok` to access the app on an external network and create a redirect URL for OAuth.
-
-```bash
-ngrok http 3000
-```
-
-This output should include a forwarding address for `http` and `https` (we'll use `https`). It should look something like the following:
-
-```bash
-Forwarding   https://3cb89939.ngrok.io -> http://localhost:3000
-```
-
-Navigate to **OAuth & Permissions** in your app configuration and click **Add a Redirect URL**. The redirect URL should be set to your `ngrok` forwarding address with the `slack/oauth_redirect` path appended. For example:
-
-```bash
-https://3cb89939.ngrok.io/slack/oauth_redirect
-```
+To view all documentation and guides available, visit the
+[Overview page](https://api.slack.com/future/overview).
