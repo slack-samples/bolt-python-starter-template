@@ -64,7 +64,7 @@ $ pip install -r requirements.txt
 
 ```zsh
 # Run flake8 from root directory for linting
-flake8 *.py && flake8 functions/
+flake8 *.py && flake8 listeners/
 
 # Run black from root directory for code formatting
 black .
