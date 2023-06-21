@@ -1,6 +1,6 @@
 from slack_bolt import App
-from .forward_msg import forward_message_callback
+from .sample_shortcut import sample_shortcut_callback
 
 
 def register(app: App):
-    app.shortcut("report_message")(forward_message_callback)
+    app.shortcut("sample_shortcut_id")(sample_shortcut_callback)
