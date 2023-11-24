@@ -1,0 +1,5 @@
+{
+  "hooks": {
+    "get-hooks": "python -m slack_bolt.cli.get_hooks"
+  }
+}
