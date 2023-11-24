@@ -1,4 +1,9 @@
-# black project prefers pyproject.toml
-# that's why we have this file in addition to other setting files
+# Copyright 2023, Slack Technologies, LLC. All rights reserved.
 [tool.black]
 line-length = 125
+
+[tool.pytest.ini_options]
+log_file = "logs/pytest.log"
+log_file_level = "DEBUG"
+log_format = "%(asctime)s %(levelname)s %(message)s"
+log_date_format = "%Y-%m-%d %H:%M:%S"
