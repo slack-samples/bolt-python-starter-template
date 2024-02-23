@@ -66,6 +66,8 @@ black .
 
 Every incoming request is routed to a "listener". Inside this directory, we group each listener based on the Slack Platform feature used, so `/listeners/shortcuts` handles incoming [Shortcuts](https://api.slack.com/interactivity/shortcuts) requests, `/listeners/views` handles [View submissions](https://api.slack.com/reference/interaction-payloads/views#view_submission) and so on.
 
+For additional information about Bolt's concepts please check https://slack.dev/bolt-python/concepts
+
 
 ## App Distribution / OAuth
 
