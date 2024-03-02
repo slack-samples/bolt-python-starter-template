@@ -27,7 +27,7 @@ export SLACK_APP_TOKEN=<your-app-token>
 ### Setup Your Local Project
 ```zsh
 # Clone this project onto your machine
-git clone https://github.com/slackapi/bolt-python-template.git
+git clone https://github.com/slack-samples/bolt-python-starter-template.git
 
 # Change into this project directory
 cd bolt-python-starter-template
@@ -65,7 +65,6 @@ black .
 ### `/listeners`
 
 Every incoming request is routed to a "listener". Inside this directory, we group each listener based on the Slack Platform feature used, so `/listeners/shortcuts` handles incoming [Shortcuts](https://api.slack.com/interactivity/shortcuts) requests, `/listeners/views` handles [View submissions](https://api.slack.com/reference/interaction-payloads/views#view_submission) and so on.
-
 
 ## App Distribution / OAuth
 
