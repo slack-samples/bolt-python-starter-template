@@ -52,7 +52,7 @@ flake8 *.py && flake8 listeners/
 black .
 ```
 
-#### testing
+#### Testing
 ```zsh
 # Run pytest from root directory for unit testing
 pytest .
