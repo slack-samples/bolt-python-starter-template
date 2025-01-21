@@ -52,6 +52,12 @@ flake8 *.py && flake8 listeners/
 black .
 ```
 
+#### Testing
+```zsh
+# Run pytest from root directory for unit testing
+pytest .
+```
+
 ## Project Structure
 
 ### `manifest.json`
