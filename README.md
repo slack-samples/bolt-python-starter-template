@@ -6,7 +6,8 @@ Before getting started, make sure you have a development workspace where you hav
 ## Installation
 
 # Deploy to Heroku
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/allhaile/bolt-python-starter-template)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://www.heroku.com/deploy?template=https://github.com/allhaile/bolt-python-starter-template)
+
 
 
 #### Create a Slack App
