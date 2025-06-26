@@ -1,0 +1,23 @@
+{
+  "name": "Bolt for Python Starter App (Socket Mode)",
+  "description": "A Slack app using Bolt for Python with Socket Mode",
+  "env": {
+    "SLACK_BOT_TOKEN": {
+      "description": "Your bot token (starts with xoxb-)",
+      "required": true
+    },
+    "SLACK_APP_TOKEN": {
+      "description": "Your app-level token (starts with xapp-)",
+      "required": true
+    }
+  },
+  "scripts": {
+    "postdeploy": "echo 'Your Bolt for Python Socket Mode app was deployed!'"
+  },
+  "addons": [],
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ]
+}

@@ -5,6 +5,10 @@ This is a generic Bolt for Python template app used to build out Slack apps.
 Before getting started, make sure you have a development workspace where you have permissions to install apps. If you don’t have one setup, go ahead and [create one](https://slack.com/create).
 ## Installation
 
+# Deploy to Heroku
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/allhaile/bolt-python-starter-template)
+
+
 #### Create a Slack App
 1. Open [https://api.slack.com/apps/new](https://api.slack.com/apps/new) and choose "From an app manifest"
 2. Choose the workspace you want to install the application to
