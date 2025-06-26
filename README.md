@@ -5,11 +5,6 @@ This is a generic Bolt for Python template app used to build out Slack apps.
 Before getting started, make sure you have a development workspace where you have permissions to install apps. If you don’t have one setup, go ahead and [create one](https://slack.com/create).
 ## Installation
 
-# Deploy to Heroku
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://www.heroku.com/deploy?template=https://github.com/allhaile/bolt-python-starter-template)
-
-
-
 #### Create a Slack App
 1. Open [https://api.slack.com/apps/new](https://api.slack.com/apps/new) and choose "From an app manifest"
 2. Choose the workspace you want to install the application to
@@ -28,6 +23,16 @@ Before you can run the app, you'll need to store some environment variables.
 export SLACK_BOT_TOKEN=<your-bot-token>
 export SLACK_APP_TOKEN=<your-app-token>
 ```
+
+## Heroku Deployment
+Use the `Deploy to Heroku` button below to launch this app on Heroku. Ensure your Heroku config vars include the required Slack env variables.
+<!--
+  NOTE: This Deploy to Heroku button currently points to my personal fork
+  to allow testing of the latest changes.
+  Before merging this PR, be sure to update the URL to point to the
+  official Slack bolt-python-starter-template repository (https://github.com/slack-samples/bolt-python-starter-template).
+-->
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://www.heroku.com/deploy?template=https://github.com/allhaile/bolt-python-starter-template)
 
 ### Setup Your Local Project
 ```zsh
