@@ -4,8 +4,8 @@ version = "0.1.0"
 requires-python = ">=3.9"
 dependencies = [
     "slack-sdk==3.41.0",
-    "slack-bolt>=1.28.0",
-    "slack-cli-hooks<1.0.0",
+    "slack-bolt==1.28.0",
+    "slack-cli-hooks==0.3.0",
 ]
 
 [tool.ruff]
