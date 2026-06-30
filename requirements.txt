@@ -1,3 +1,3 @@
 pytest==9.1.1
 ruff==0.15.20
-slack-bolt==1.28.0
+slack-bolt==1.29.0
