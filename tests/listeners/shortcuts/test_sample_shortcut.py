@@ -6,7 +6,6 @@ from slack_sdk import WebClient
 
 from listeners.shortcuts.sample_shortcut import sample_shortcut_callback
 
-
 test_logger = logging.getLogger(__name__)
 
 

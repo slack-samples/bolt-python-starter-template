@@ -31,5 +31,5 @@ def app_home_opened_callback(client: WebClient, event: dict, logger: Logger):
                 ],
             },
         )
-    except Exception as e:
-        logger.error(f"Error publishing home tab: {e}")
+    except Exception:
+        logger.exception("Error publishing home tab")

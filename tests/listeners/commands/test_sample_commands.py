@@ -5,7 +5,6 @@ from slack_bolt import Ack, Respond
 
 from listeners.commands.sample_command import sample_command_callback
 
-
 test_logger = logging.getLogger(__name__)
 
 
