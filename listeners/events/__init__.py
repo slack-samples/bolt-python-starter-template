@@ -1,4 +1,5 @@
 from slack_bolt import App
+
 from .app_home_opened import app_home_opened_callback
 
 

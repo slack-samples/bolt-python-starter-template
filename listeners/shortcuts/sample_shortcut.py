@@ -56,5 +56,5 @@ def sample_shortcut_callback(body: dict, ack: Ack, client: WebClient, logger: Lo
                 "submit": {"type": "plain_text", "text": "Submit"},
             },
         )
-    except Exception as e:
-        logger.error(e)
+    except Exception:
+        logger.exception("Error opening sample shortcut modal")
