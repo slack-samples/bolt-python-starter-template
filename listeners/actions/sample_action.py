@@ -60,5 +60,5 @@ def sample_action_callback(ack: Ack, client: WebClient, body: dict, logger: Logg
                 "submit": {"type": "plain_text", "text": "Submit"},
             },
         )
-    except Exception as e:
-        logger.error(e)
+    except Exception:
+        logger.exception("Error opening sample action modal")

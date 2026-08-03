@@ -6,7 +6,6 @@ from slack_sdk import WebClient
 
 from listeners.views.sample_view import sample_view_callback
 
-
 test_logger = logging.getLogger(__name__)
 
 

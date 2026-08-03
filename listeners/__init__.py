@@ -1,9 +1,4 @@
-from listeners import actions
-from listeners import commands
-from listeners import events
-from listeners import messages
-from listeners import shortcuts
-from listeners import views
+from listeners import actions, commands, events, messages, shortcuts, views
 
 
 def register_listeners(app):
