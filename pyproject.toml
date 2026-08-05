@@ -1,3 +1,17 @@
+[project]
+name = "bolt-python-starter-template"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "slack-bolt==1.27.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==9.0.2",
+    "ruff==0.9.4",
+]
+
 [tool.ruff]
 line-length = 125
 exclude = [".venv", "venv"]
