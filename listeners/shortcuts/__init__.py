@@ -1,4 +1,5 @@
 from slack_bolt import App
+
 from .sample_shortcut import sample_shortcut_callback
 
 

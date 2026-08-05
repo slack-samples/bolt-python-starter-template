@@ -18,5 +18,5 @@ def sample_view_callback(view, ack: Ack, body: dict, client: WebClient, logger: 
             text=f"<@{sample_user_value}> submitted the following :sparkles: "
             + f"hopes and dreams :sparkles:: \n\n {sample_input_value}",
         )
-    except Exception as e:
-        logger.error(e)
+    except Exception:
+        logger.exception("Error handling sample view submission")
