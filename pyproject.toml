@@ -1,16 +1,19 @@
 [project]
 name = "bolt-python-starter-template"
-version = "0.1.0"
+version = "0.0.0"
 requires-python = ">=3.11"
 dependencies = [
-    "slack-bolt==1.27.0",
+    "slack-bolt==1.30.0",
 ]
 
 [project.optional-dependencies]
 dev = [
-    "pytest==9.0.2",
-    "ruff==0.9.4",
+    "pytest==9.1.1",
+    "ruff==0.16.9",
 ]
+
+[tool.setuptools.packages.find]
+include = ["listeners*"]
 
 [tool.ruff]
 line-length = 125
