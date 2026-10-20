@@ -128,7 +128,7 @@ pytest .
 
 Every incoming request is routed to a "listener". Inside this directory, we group each listener based on the Slack Platform feature used, so `/listeners/shortcuts` handles incoming [Shortcuts](https://docs.slack.dev/interactivity/implementing-shortcuts/) requests, `/listeners/views` handles [View submissions](https://api.slack.com/reference/interaction-payloads/views#view_submission) and so on.
 
-Each listener registers itself with a decorator. `app.py` sets `listeners.app` and then calls `listeners.load_listeners()`, which imports every module in this directory. To add a listener, create a new file in the matching directory:
+Each listener registers itself with a decorator. `listeners/__init__.py` creates the default Socket Mode `app`, and `app.py` calls `load_listeners()`, which imports every module in this directory. To add a listener, create a new file in the matching directory:
 
 ```python
 from listeners import app
@@ -141,7 +141,7 @@ def app_mention_callback(say):
 
 ## App Distribution / OAuth
 
-Only implement OAuth if you plan to distribute your application across multiple workspaces. `app_oauth.py` holds the OAuth settings. To start the app over HTTP with OAuth, delete `app.py`, rename `app_oauth.py` to `app.py`, and set these environment variables from your app's **Basic Information** page:
+Only implement OAuth if you plan to distribute your application across multiple workspaces. `app_oauth.py` holds the OAuth settings and replaces the default `listeners.app` with an OAuth app before loading the listeners. To start the app over HTTP with OAuth, delete `app.py`, rename `app_oauth.py` to `app.py`, and set these environment variables from your app's **Basic Information** page:
 
 ```zsh
 export SLACK_CLIENT_ID=<your-client-id>
