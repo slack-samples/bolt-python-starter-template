@@ -124,18 +124,14 @@ pytest .
 
 `app.py` is the entry point for the application and is the file you'll run to start the server. This project aims to keep this file as thin as possible, primarily using it as a way to route inbound requests.
 
-### `bolt_app.py`
-
-`bolt_app.py` creates the Bolt `app` and loads every module in `/listeners`. Listener modules import `app` from here, so it is configured in one place for both Socket Mode and OAuth.
-
 ### `/listeners`
 
 Every incoming request is routed to a "listener". Inside this directory, we group each listener based on the Slack Platform feature used, so `/listeners/shortcuts` handles incoming [Shortcuts](https://docs.slack.dev/interactivity/implementing-shortcuts/) requests, `/listeners/views` handles [View submissions](https://api.slack.com/reference/interaction-payloads/views#view_submission) and so on.
 
-Each listener registers itself with a decorator, and `bolt_app.py` imports every module in this directory on startup. To add a listener, create a new file in the matching directory:
+Each listener registers itself with a decorator. `app.py` passes its `app` to `load_listeners`, which imports every module in this directory on startup. To add a listener, create a new file in the matching directory:
 
 ```python
-from bolt_app import app
+from listeners import app
 
 
 @app.event("app_mention")
@@ -145,7 +141,7 @@ def app_mention_callback(say):
 
 ## App Distribution / OAuth
 
-Only implement OAuth if you plan to distribute your application across multiple workspaces. The OAuth settings live in `bolt_app.py` and turn on when `SLACK_CLIENT_ID` is set. To start the app over HTTP with OAuth, rename `app_oauth.py` to `app.py` (replacing the Socket Mode one) and set these environment variables from your app's **Basic Information** page:
+Only implement OAuth if you plan to distribute your application across multiple workspaces. `app_oauth.py` holds the OAuth settings. To start the app over HTTP with OAuth, delete `app.py`, rename `app_oauth.py` to `app.py`, and set these environment variables from your app's **Basic Information** page:
 
 ```zsh
 export SLACK_CLIENT_ID=<your-client-id>

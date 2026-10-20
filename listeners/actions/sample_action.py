@@ -3,7 +3,7 @@ from logging import Logger
 from slack_bolt import Ack
 from slack_sdk import WebClient
 
-from bolt_app import app
+from listeners import app
 
 
 @app.action("sample_action_id")

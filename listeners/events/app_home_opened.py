@@ -2,7 +2,7 @@ from logging import Logger
 
 from slack_sdk import WebClient
 
-from bolt_app import app
+from listeners import app
 
 
 @app.event("app_home_opened")

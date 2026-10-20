@@ -2,7 +2,7 @@ from logging import Logger
 
 from slack_bolt import Ack, Respond
 
-from bolt_app import app
+from listeners import app
 
 
 @app.command("/sample-command")

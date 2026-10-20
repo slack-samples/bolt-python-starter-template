@@ -3,7 +3,7 @@ from logging import Logger
 
 from slack_bolt import BoltContext, Say
 
-from bolt_app import app
+from listeners import app
 
 
 # To receive messages from a channel or dm your app must be a member!

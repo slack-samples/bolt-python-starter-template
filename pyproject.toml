@@ -12,9 +12,6 @@ dev = [
     "ruff==0.16.9",
 ]
 
-[tool.setuptools]
-py-modules = ["bolt_app"]
-
 [tool.setuptools.packages.find]
 include = ["listeners*"]
 

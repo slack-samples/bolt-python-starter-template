@@ -1,4 +1,5 @@
-import os
+from slack_bolt import App
 
-os.environ["SLACK_BOT_TOKEN"] = "test-bot-token"
-os.environ["SLACK_TOKEN_VERIFICATION_ENABLED"] = "false"
+from listeners import load_listeners
+
+load_listeners(App(token="test-bot-token", token_verification_enabled=False))
