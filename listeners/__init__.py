@@ -1,10 +1,9 @@
-import os
 from importlib import import_module
 from pkgutil import walk_packages
 
 from slack_bolt import App
 
-app = App(token=os.environ.get("SLACK_BOT_TOKEN"), token_verification_enabled=False)
+app: App
 
 
 def load_listeners() -> None:

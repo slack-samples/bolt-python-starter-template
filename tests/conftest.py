@@ -1,5 +1,6 @@
-import os
+from slack_bolt import App
 
+import listeners
 
-def pytest_configure():
-    os.environ["SLACK_BOT_TOKEN"] = "test-bot-token"
+listeners.app = App(token="test-bot-token", token_verification_enabled=False)
+listeners.load_listeners()
