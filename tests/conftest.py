@@ -1,6 +1,10 @@
+from unittest.mock import patch
+
 from slack_bolt import App
+from slack_sdk import WebClient
 
 import listeners
 
-listeners.app = App(token="test-bot-token", token_verification_enabled=False)
+with patch.object(WebClient, "auth_test"):
+    listeners.app = App(token="test-bot-token")
 listeners.load_listeners()
