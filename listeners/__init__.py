@@ -6,8 +6,6 @@ from slack_bolt import App
 app: App
 
 
-def load_listeners(bolt_app: App) -> None:
-    global app
-    app = bolt_app
+def load_listeners() -> None:
     for module_info in walk_packages(__path__, f"{__name__}."):
         import_module(module_info.name)

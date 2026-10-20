@@ -1,5 +1,6 @@
 from slack_bolt import App
 
-from listeners import load_listeners
+import listeners
 
-load_listeners(App(token="test-bot-token", token_verification_enabled=False))
+listeners.app = App(token="test-bot-token", token_verification_enabled=False)
+listeners.load_listeners()

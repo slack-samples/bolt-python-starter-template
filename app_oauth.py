@@ -7,7 +7,7 @@ from slack_bolt.oauth.oauth_settings import OAuthSettings
 from slack_sdk.oauth.installation_store import FileInstallationStore
 from slack_sdk.oauth.state_store import FileOAuthStateStore
 
-from listeners import load_listeners
+import listeners
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -43,7 +43,8 @@ app = App(
 )
 
 # Load Listeners
-load_listeners(app)
+listeners.app = app
+listeners.load_listeners()
 
 # Start Bolt app
 if __name__ == "__main__":
