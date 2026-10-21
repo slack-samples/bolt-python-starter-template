@@ -2,10 +2,10 @@ from logging import Logger
 
 from slack_sdk import WebClient
 
-from listeners import app
+from listeners import registry
 
 
-@app.event("app_home_opened")
+@registry.event("app_home_opened")
 def app_home_opened_callback(client: WebClient, event: dict, logger: Logger):
     # ignore the app_home_opened event for anything but the Home tab
     if event["tab"] != "home":
