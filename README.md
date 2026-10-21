@@ -128,13 +128,13 @@ pytest .
 
 Every incoming request is routed to a "listener". Inside this directory, we group each listener based on the Slack Platform feature used, so `/listeners/shortcuts` handles incoming [Shortcuts](https://docs.slack.dev/interactivity/implementing-shortcuts/) requests, `/listeners/views` handles [View submissions](https://api.slack.com/reference/interaction-payloads/views#view_submission) and so on.
 
-Each listener registers itself with a decorator. `app.py` calls `load_listeners(app)`, which imports every module in this directory and registers its listeners on the app. To add a listener, create a new file in the matching directory:
+Each listener registers itself with a decorator. `app.py` calls `load_listeners(app)`, which shares the app as `listeners.app` and imports every module in this directory. To add a listener, create a new file in the matching directory:
 
 ```python
-from listeners import registry
+from listeners import app
 
 
-@registry.event("app_mention")
+@app.event("app_mention")
 def app_mention_callback(say):
     say("Hi there!")
 ```

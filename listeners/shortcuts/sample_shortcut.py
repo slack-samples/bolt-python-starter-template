@@ -3,10 +3,10 @@ from logging import Logger
 from slack_bolt import Ack
 from slack_sdk import WebClient
 
-from listeners import registry
+from listeners import app
 
 
-@registry.shortcut("sample_shortcut_id")
+@app.shortcut("sample_shortcut_id")
 def sample_shortcut_callback(body: dict, ack: Ack, client: WebClient, logger: Logger):
     try:
         ack()
