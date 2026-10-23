@@ -1,10 +1,13 @@
-from listeners import actions, commands, events, messages, shortcuts, views
+from importlib import import_module
+from pkgutil import walk_packages
+
+from slack_bolt import App
+
+app: App
 
 
-def register_listeners(app):
-    actions.register(app)
-    commands.register(app)
-    events.register(app)
-    messages.register(app)
-    shortcuts.register(app)
-    views.register(app)
+def load_listeners(bolt_app: App) -> None:
+    global app
+    app = bolt_app
+    for module_info in walk_packages(__path__, f"{__name__}."):
+        import_module(module_info.name)
