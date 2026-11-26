@@ -3,7 +3,10 @@ from logging import Logger
 from slack_bolt import Ack
 from slack_sdk import WebClient
 
+from listeners import app
 
+
+@app.view("sample_view_id")
 def sample_view_callback(view, ack: Ack, body: dict, client: WebClient, logger: Logger):
     try:
         ack()
